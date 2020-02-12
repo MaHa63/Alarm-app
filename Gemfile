@@ -24,7 +24,16 @@ gem 'bootstrap_form', '< 4.3.0'
 
 gem 'rails-i18n', '~> 5.1'
 gem 'bootstrap-datepicker-rails'
+#----------------------
+#gem 'datetime_picker_input'
+#gem 'bootstrap-datetimepicker-rails'
 
+#gem 'bootstrap_form-datetimepicker'
+
+#gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+#gem 'momentjs-rails', '>= 2.9'
+
+#----------------------
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap' 
 
