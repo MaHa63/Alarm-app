@@ -21,3 +21,8 @@
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({"format": "dd-mm-yyyy", "weekStart": 1, "autoclose": true, calendarWeeks: true,  todayHighlight: true, language: 'fi' })
 });
+
+
+
+
+

@@ -6,7 +6,7 @@ class Todo < ApplicationRecord
   	if created == nil 
   		result = ""
   	else
-  		result = created.strftime("%d-%m-%Y")
+  		result = created.strftime("%d-%m-%Y, %H:%M")
   	end
   	"#{result}"
   end
@@ -15,7 +15,7 @@ class Todo < ApplicationRecord
   	if duedate == nil 
   		result = ""
   	else
-  		result = duedate.strftime("%d-%m-%Y")
+  		result = duedate.strftime("%d-%m-%Y, %H:%M")
   	end
   	"#{result}"
   end
@@ -24,7 +24,7 @@ class Todo < ApplicationRecord
   	if completed == nil 
   		result = ""
   	else
-  		result = completed.strftime("%d-%m-%Y")
+  		result = completed.strftime("%d-%m-%Y, %H:%M")
   	end
   	"#{result}"
   end
