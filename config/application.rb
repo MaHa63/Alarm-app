@@ -20,5 +20,8 @@ module DeviseApp
     # --------------
     config.i18n.available_locales = [:en, :fi]
     config.i18n.default_locale = :fi
+    
+    config.time_zone = 'Europe/Helsinki'
+    config.active_record.default_timezone = :local
   end
 end
