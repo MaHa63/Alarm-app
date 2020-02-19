@@ -43,4 +43,15 @@ class Todo < ApplicationRecord
     
     "#{result}"
   end
+  
+  def raise_alarm(duedate)
+    now_date = DateTime.now.to_datetime 
+    if now_date >= duedate
+      return "blinking"
+    else
+      return "available"
+    end
+    
+  end
+  
 end
