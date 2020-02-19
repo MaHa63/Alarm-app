@@ -9,7 +9,7 @@ class TodosController < ApplicationController
     
     @todos = Todo.where(user_id: current_user.id, closed: false )
     
-    order = params[:order] || 'created'
+    order = params[:order] || 'duedate'
     
     @todos = case order
       when 'created' then @todos.sort_by{ |t| t.created }
