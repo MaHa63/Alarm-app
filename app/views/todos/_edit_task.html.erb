@@ -10,6 +10,8 @@
                         cols: "30",
                         rows: "3",
                         class: 'form-control' %>
+  
+    <%= f.collection_select :customer_id, Customer.where(user_id: current_user.id ).order("last_name, first_name"), :id, :customer_name, label: 'Asiakas', prompt: true %> 
     
     <%= f.select  :priority, [["Kriittinen", "1"], ["Tärkeä", "2"], ["Hyödyllinen", "3"]], 
             {prompt: "--Valitse--", label: "Prioriteetti"}    %>

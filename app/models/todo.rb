@@ -1,6 +1,7 @@
 class Todo < ApplicationRecord
   
   belongs_to :user
+  belongs_to :customer
   
   def created_nil_out
   	if created == nil 
@@ -50,8 +51,9 @@ class Todo < ApplicationRecord
       return "blinking"
     else
       return "available"
-    end
-    
+    end 
   end
+  
+ 
   
 end

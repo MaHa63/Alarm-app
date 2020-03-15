@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Muokkaa asiakasta</h3>
+</div>, 
+<%= bootstrap_form_for @customer, :url => { action:"update", :id => @customer } do |f| %>
+<div class="modal-body">
+   <%= f.text_field  :first_name,
+                    label: 'Etunimi',
+                    class: 'form-control' %>
+  
+   <%= f.text_field  :last_name,
+                    label: 'Sukunimi',
+                    class: 'form-control' %>
+  
+   <%= f.text_field  :phone_nbr,
+                    label: 'Puhelin',
+                    class: 'form-control' %>
+  
+   <%= f.text_field  :street,
+                    label: 'Katuosoite',
+                    class: 'form-control' %>
+   
+  <%= f.text_field  :zip_code,
+                    label: 'Postinumero',
+                    class: 'form-control' %>
+  
+  <%= f.text_field  :city,
+                    label: 'Postitoimipaikka',
+                    class: 'form-control' %>
+     
+</div>
+<div class="modal-footer">
+    <button class="btn btn-gray" data-dismiss="modal" aria-hidden="true">Sulje</button>
+    <button class="btn btn-green">Tallenna</button>
+</div>
+<% end %>

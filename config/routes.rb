@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :customers
   resources :todos
   devise_for :users, :controllers => { :registrations => "registrations" }
  
@@ -19,6 +20,13 @@ Rails.application.routes.draw do
     collection do 
       get 'todos/new_task' => 'todos#new_task', :as => :new_task
       post 'todos/edit_task' => 'todos#edit_task', :as => :edit_task
+    end
+  end
+  
+   resources :customers do
+    collection do 
+      get 'customers/new_entry' => 'customers#new_entry', :as => :new_entry
+      post 'customers/edit_entry' => 'customers#edit_entry', :as => :edit_entry
     end
   end
   
