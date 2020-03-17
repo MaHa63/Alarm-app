@@ -1,39 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-offset-4 text-left">
+     
+      <p>
+        <strong>Nimi:</strong>
+        <%= @customer.customer_name %>
+      </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
+      <p>
+        <strong>Puhelin:</strong>
+        <%= @customer.phone_nbr %>
+      </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
+      <p>
+      <strong>Osoite:</strong>
+        <%= @customer.whole_address %>
+      </p>
 
-<p>
-  <strong>Phone nbr:</strong>
-  <%= @customer.phone_nbr %>
-</p>
+      <%= link_to 'Palaa', todos_path, { class: 'btn btn-gray' } %>
+      <br /><br />
+    </div>
+    
+    <div style="width: 100%; height: 480px" id="mapContainer"></div>
+        <script type="text/javascript" charset="utf-8">
+          //Initialize the Platform object:
+          var platform = new H.service.Platform({
+            'app_id': 'NJsi5NHfjieZkYvn4NC3',
+            'app_code': '8pIyuZLmN4GhCN-og-heow'
+          });
 
-<p>
-  <strong>Street:</strong>
-  <%= @customer.street %>
-</p>
+          // Get the default map types from the Platform object:
+          var defaultLayers = platform.createDefaultLayers();
 
-<p>
-  <strong>Zip code:</strong>
-  <%= @customer.zip_code %>
-</p>
+          // Instantiate the map:
+          var map = new H.Map(
+            document.getElementById('mapContainer'),
+            defaultLayers.normal.map,
+            {
+              zoom: 15,
+              center: { lng: <%= @customer.longitude %>, lat: <%= @customer.latitude %> }
+            });
 
-<p>
-  <strong>City:</strong>
-  <%= @customer.city %>
-</p>
+          // Create the default UI:
+          var ui = H.ui.UI.createDefault(map, defaultLayers, 'fi-FI');
 
-<p>
-  <strong>User:</strong>
-  <%= @customer.user_id %>
-</p>
+           var svgMarkup = '<svg version="1.2" baseProfile="tiny" ' +
+               'xmlns="http://www.w3.org/2000/svg" width="50" height="50" ' +
+               'viewBox="0 0 50 50" overflow="inherit"><path d="M25 0c-8.284 ' +
+               '0-15 6.656-15 14.866 0 8.211 15 35.135 15 35.135s15-26.924 ' +
+               '15-35.135c0-8.21-6.716-14.866-15-14.866zm-.049 19.312c-2.557 ' +
+               '0-4.629-2.055-4.629-4.588 0-2.535 2.072-4.589 4.629-4.589 ' +
+               '2.559 0 4.631 2.054 4.631 4.589 0 2.533-2.072 4.588-4.631 4.588z"/></svg>  ';
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+          // Create an icon, an object holding the latitude and longitude, and a marker:
+          var icon = new H.map.Icon(svgMarkup),
+          coords = {lat:  <%= @customer.latitude %>, lng: <%= @customer.longitude %> },
+          marker = new H.map.Marker(coords, {icon: icon});
+
+          // Add the marker to the map and center the map at the location of the marker:
+          map.addObject(marker);
+          map.setCenter(coords);
+        </script>
+      </div>
+  </div>
+</div>

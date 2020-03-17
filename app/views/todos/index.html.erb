@@ -22,10 +22,10 @@
        <tr>
         
         <td><%= link_to todo.description, { :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', :action => 'edit_task', :id => todo.id }, :method => :post %></td>
-        <td><%= todo.customer.customer_name unless todo.customer.nil? %></td>
-         <td><%= todo.created_nil_out %></td>
+        <td><%= link_to (todo.customer.customer_name unless todo.customer.nil?) , { :controller =>  :customers, :action => 'show', :id => todo.customer_id } %></td>
+        <td><%= todo.created_nil_out %></td>
         <td><strong><%= todo.priority_as_text%></strong></td>
-         <td class="<%=todo.raise_alarm(todo.duedate) %>"><%= todo.duedate_nil_out %></td> 
+        <td class="<%=todo.raise_alarm(todo.duedate) %>"><%= todo.duedate_nil_out %></td> 
         <td><%= button_to 'Sulje', { :controller => :todos, :action => 'close', :id => todo.id }, method: :post, class: "btn btn-green btn-xs" %></td>
         <td><%= button_to 'Poista', { :controller => :todos, :action => 'destroy', :id => todo.id },:method => :delete, class: "btn btn-red btn-xs", data: { confirm: "Oletko varma tietueen poistamisesta ?"} %></td>
       </tr>

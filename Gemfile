@@ -37,6 +37,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap' 
 
+gem 'geocoder', '~> 1.4'
+
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3', '~> 1.3','< 1.4'
 # Use Puma as the app server
