@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy ]
+  #before_action :set_todo, only: [:show, :edit, :update, :destroy, :index_by_customer ]
   before_action :authenticate_user!
   
   # GET /todos
@@ -17,6 +17,15 @@ class TodosController < ApplicationController
       when 'duedate'  then @todos.sort_by{ |t| t.duedate }
     end
   end
+        
+  def index_by_customer
+		#@customers = Customer.all
+		#@todos = Todo.where("customer_id = ?", params[:customer_id])
+		@todos = Todo.where("customer_id = ?", params[:customer_id] )
+    puts '----------------'
+		puts @todos
+		puts '´---------------'
+	end
 
   def history
     require 'will_paginate/array'
@@ -30,6 +39,7 @@ class TodosController < ApplicationController
   # GET /todos/1
   # GET /todos/1.json
   def show
+    @todo = Todo.find(params[:id])
   end
 
   # GET /todos/new
@@ -55,9 +65,19 @@ class TodosController < ApplicationController
 
   # GET /todos/1/edit
   def edit
+    @todo = Todo.find(params[:id])
   end
   
   def edit_task
+     @todo = Todo.find(params[:id])
+     # Modal
+    respond_to do |format|
+      format.html
+      format.js
+    end 
+  end
+        
+  def edit_report
      @todo = Todo.find(params[:id])
      # Modal
     respond_to do |format|
@@ -89,6 +109,7 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
   def update
+    @todo = Todo.find(params[:id])
     respond_to do |format|
       if @todo.update(todo_param)
         format.html { redirect_to todos_path, notice: 'Tehtävä päivitetty.' }
@@ -103,6 +124,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   # DELETE /todos/1.json
   def destroy
+    @todo = Todo.find(params[:id])
     @todo.destroy
     respond_to do |format|
       format.html { redirect_to todos_url, notice: 'Tehtävä poistettu.' }
@@ -128,18 +150,18 @@ class TodosController < ApplicationController
   
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_todo
-      @todo = Todo.find(params[:id])
-    end
+    #def set_todo
+    #  @todo = Todo.find(params[:id])
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todos).permit(:description, :created, :completed, :priority, :duedate, :closed, :user_id, :customer_id)
+      params.require(:todos).permit(:description, :created, :completed, :priority, :duedate, :closed, :user_id, :customer_id, :report)
     end
   
   
     def todo_param
-      params.require(:todo).permit(:description, :created, :completed, :priority, :duedate, :closed, :user_id, :customer_id)
+      params.require(:todo).permit(:description, :created, :completed, :priority, :duedate, :closed, :user_id, :customer_id, :report)
     end
   
     def modal_params

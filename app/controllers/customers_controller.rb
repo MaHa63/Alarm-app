@@ -103,12 +103,12 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customers).permit(:first_name, :last_name, :phone_nbr, :street, :zip_code, :city, :user_id )
+      params.require(:customers).permit(:first_name, :last_name, :phone_nbr, :street, :zip_code, :city, :user_id, :more )
     end
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_param
-      params.require(:customer).permit(:first_name, :last_name, :phone_nbr, :street, :zip_code, :city, :user_id )
+      params.require(:customer).permit(:first_name, :last_name, :phone_nbr, :street, :zip_code, :city, :user_id, :more )
     end
   
     def modal_params

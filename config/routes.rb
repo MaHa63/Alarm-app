@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     collection do 
       get 'todos/new_task' => 'todos#new_task', :as => :new_task
       post 'todos/edit_task' => 'todos#edit_task', :as => :edit_task
+      post 'todos/edit_report' => 'todos#edit_report', :as => :edit_report
+      get 'todos/index_by_customer' => 'todos#index_by_customer' , :as => :index_by_customer
     end
   end
   

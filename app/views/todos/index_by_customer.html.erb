@@ -1,0 +1,35 @@
+<div class="container">
+
+  <% if @todos.blank? %>
+		<h3>Asiakkaalla ei ole raportoitavaa.</h3>
+	<% else %>
+		<br />
+    <h3> <%= @todos.first.customer.customer_name %>  </h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th data-field="description", style="width: 25% ">Kuvaus</th>
+            <th data-field="report", style="width: 75% ">Toimenpiteet</th>
+          </tr>
+        </thead>
+
+
+        <tbody>
+          <% @todos.each do |todo| %>
+           <tr>
+
+            <td><%= todo.description %></td>
+            <td><%= todo.report %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  
+  <% end %>
+  <%= button_to "Takaisin", {:controller => :customers, :action => 'index'}, :method => :get, class: 'btn btn-green' %>
+  
+  <br />
+  <br />
+  <br />
+  <br />
+</div>

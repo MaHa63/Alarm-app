@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Raportti</h3>
+</div>, 
+<%= bootstrap_form_for @todo, :url => { action:"update", :id => @todo } do |f| %>
+<div class="modal-body">
+   
+      <%= f.text_area   :report,
+                        label: @todo.customer.customer_name + ": " + @todo.description,
+                        cols: "30",
+                        rows: "3",
+                        class: 'form-control' %>
+  
+</div>
+<div class="modal-footer">
+    <button class="btn btn-gray" data-dismiss="modal" aria-hidden="true">Sulje</button>
+    <button class="btn btn-green">Tallenna</button>
+</div>
+<% end %>
